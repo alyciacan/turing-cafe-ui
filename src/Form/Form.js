@@ -1,4 +1,4 @@
-import { Component, React, useState, useRef } from 'react';
+import React, { Component } from 'react';
 
 class Form extends Component {
     constructor() {
@@ -9,31 +9,32 @@ class Form extends Component {
             date:"",
             time:""
         }
-        const [defaultName, setName] = useState('Name');
-        const [number, setNumber] = useState('Number of Guests');
-        const [date, setDate] = useState('Date');
-        const [time, setTime] = useState('Time');
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
     }
 
     handleChange(e) {
         this.setState({ [e.target.id]: e.target.value })
     }
 
+    handleSubmit(e) {
+        console.log('Submitted');
+        e.preventDefault();
 
-
-    
+    }
 
     render() {
+        console.log(this.state)
+        return (
         <form className="res-form">
-          <input type="text" id="name" value={this.state.name ? this.state.name : defaultName} onChange={this.handleChange}/>
-          <input type="date" id="date" value={this.state.date}/>
-          <input type="text" id="time" value={this.state.time}/>
-          <input type="text" id="number" value={this.state.number}/>
-          <button type="submit">Submit</button>
+          <input type="text" id="name" value={this.state.name} onChange={this.handleChange} />
+          <input type="date" id="date" value={this.state.date} onChange={this.handleChange} />
+          <input type="text" id="time" value={this.state.time} onChange={this.handleChange} />
+          <input type="text" id="number" value={this.state.number} onChange={this.handleChange} />
+          <button type="submit" onClick={this.handleSubmit}>Submit</button>
         </form>
+        )
     }
 
 
@@ -42,3 +43,4 @@ class Form extends Component {
 
 
 
+export default Form;
