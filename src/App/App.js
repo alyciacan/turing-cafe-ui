@@ -17,12 +17,17 @@ class App extends Component {
       .then(data => this.setState({ reservations: data }))
   }
 
+  addReservation = (newRes) => {
+    console.log(newRes)
+    this.setState(prevState => ({ reservations: [newRes, ...prevState.reservations] }))
+  }
+
   render() {
     return (
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
         <div className='resy-form'>
-          <Form />
+          <Form addReservation={this.addReservation} />
         </div>
         <div className='resy-container'>
           <ReservationContainer reservations={this.state.reservations} />
